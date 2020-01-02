@@ -1,7 +1,16 @@
+// Import Express
+
 const express = require('express');
+
 const morgan = require('morgan');
 
+// Create New Express App
+
 const app = express();
+
+// Server Configuration 
+
+// const PORT = 8080; 
 
 var topMovies = [
     {
@@ -74,8 +83,28 @@ var topMovies = [
       'Welcome to the My Flicks Movie App. Herein you can find detailed information about movies.';
     res.send(responseText);
   });
+
   app.get('/movies', function(req, res) {
-    res.json(topMovies);
+  res.json(topMovies);
+  });
+
+  app.get('/title', function(req, res) {
+    res.json(title);
+  });
+
+  app.get('/genre', function(req, res) {
+    res.json(genre);
+  });
+
+  app.get('/year', function(req, res) {
+    res.json(year);
+  });
+
+  app.use((err, req, res, next) => {
+    var logEntryTimestamp = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
+    var logEntry = `${logEntryTimestamp} - Error: ${err.stack}`;
+    console.error(logEntry);
+    res.status(500).send('Please Stand By!');
   });
   
   // Listen for requests
