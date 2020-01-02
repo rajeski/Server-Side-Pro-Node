@@ -100,12 +100,12 @@ var topMovies = [
     res.json(year);
   });
 
-  // app.use((err, req, res, next) => {
-  //   var logEntryTimestamp = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
-  //   var logEntry = `${logEntryTimestamp} - Error: ${err.stack}`;
-  //   console.error(logEntry);
-  //   res.status(500).send('Please Stand By!');
-  // });
+  app.use((err, req, res, next) => {
+    var logEntryTimestamp = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
+    var logEntry = `${logEntryTimestamp} - Error: ${err.stack}`;
+    console.error(logEntry);
+    res.status(500).send('Please Stand By!');
+  });
   
   // Listen for requests
   app.listen(8080, function() {
