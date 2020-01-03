@@ -16,51 +16,81 @@ var topMovies = [
     {
       title: 'Rashomon',
       genre: 'crime drama',
+      director: 'akira kurosawa', 
+      main_actor: 'toshiro mifune', 
+      country: 'japan', 
       year: 1950
     },
     {
       title: 'Tokyo Story',
       genre: 'drama',
-      year: 1953
+      director: 'yasujiro ozu',
+      main_actor: 'chishu ryu',
+      country: 'japan',
+      year: 1953 
     },
     {
       title: 'Godzilla (Gojira)', 
       genre: 'tokusatsu (special filming) protest-movie',
+      director: 'ishiro honda',
+      main_actor: 'haruo nakajima',
+      country: 'japan',
       year: 1954 
     },
     {
       title: 'Paths of Glory',
       genre: 'anti-war',
+      director: 'stanley kubrick',
+      main_actor: 'kirk douglas',
+      country: 'germany',
       year: 1957
     },
     {
       title: 'Spartacus',
       genre: 'epic historical drama',
+      director: 'stanley kubrick',
+      main_actor: 'kirk douglas',
+      country: 'america and spain',
       year: 1960
     },
     {
       title: '2001: A Space Odyssey',
       genre: 'epic science fiction',
+      director: 'stanley kubrick',
+      main_actor: 'keir dullea',
+      country: 'england',
       year: 1968
     },
     {
       title: 'Chinatown',
       genre: 'neo-noir mystery',
+      director: 'roman polanski',
+      main_actor: 'jack nicholson',
+      country: 'america',
       year: 1974
     },
     {
       title: 'Gallipoli',
       genre: 'war drama',
+      director: 'peter weir',
+      main_actor: 'mel gibson',
+      country: 'australia',
       year: 1981
     },
     {
       title: 'Bound',
       genre: 'neo-noir crime',
+      director: 'the wachowskis',
+      main_actor: 'gina gershon',
+      country: 'america',
       year: 1996
     },
     {
       title: 'Ronin',
       genre: 'action thriller',
+      director: 'john frankenheimer',
+      main_actor: 'robert deniro',
+      country: 'france',
       year: 1998
     },
   ];
@@ -88,17 +118,29 @@ var topMovies = [
   res.json(topMovies);
   });
 
-  app.get('/title', function(req, res) {
-    res.json(title);
+  app.get('/genre', function(req, res) {
+    var responseText =
+      'You've made it to the genre endpoint';
+    res.send(responseText);
   });
 
-  app.get('/genre', function(req, res) {
-    res.json(genre);
+  app.get('/title', function(req, res) {
+    var responseText =
+      'You've made it to the genre endpoint';
+    res.send(responseText);
   });
 
   app.get('/year', function(req, res) {
-    res.json(year);
+    var responseText =
+      'You've made it to the genre endpoint';
+    res.send(responseText);
   });
+
+  // app.get('/director', function(req, res) {
+  //   var responseText =
+  //     'You've made it to the genre endpoint';
+  //   res.send(responseText);
+  // });
 
   app.use((err, req, res, next) => {
     var logEntryTimestamp = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
