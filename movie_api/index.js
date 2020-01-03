@@ -136,11 +136,11 @@ var topMovies = [
     res.send(responseText);
   });
 
-  // app.get('/director', function(req, res) {
-  //   var responseText =
-  //     'You've made it to the genre endpoint';
-  //   res.send(responseText);
-  // });
+  app.get('/director', function(req, res) {
+    var responseText =
+      'You've made it to the genre endpoint';
+    res.send(responseText);
+  });
 
   app.use((err, req, res, next) => {
     var logEntryTimestamp = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
