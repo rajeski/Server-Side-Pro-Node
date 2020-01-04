@@ -120,25 +120,25 @@ var topMovies = [
 
   app.get('/genre', function(req, res) {
     var responseText =
-      'You've made it to the genre endpoint';
+      'You\ve made it to the genre endpoint';
     res.send(responseText);
   });
 
   app.get('/title', function(req, res) {
     var responseText =
-      'You've made it to the genre endpoint';
+    'You\ve made it to the genre endpoint';
     res.send(responseText);
   });
 
   app.get('/year', function(req, res) {
     var responseText =
-      'You've made it to the genre endpoint';
+    'You\ve made it to the genre endpoint';
     res.send(responseText);
   });
 
   app.get('/director', function(req, res) {
     var responseText =
-      'You've made it to the genre endpoint';
+    'You\ve made it to the genre endpoint';
     res.send(responseText);
   });
 
