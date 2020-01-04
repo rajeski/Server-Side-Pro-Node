@@ -95,6 +95,55 @@ var topMovies = [
     },
   ];
   
+var addUser = [
+  {
+    "username" : "genericman", 
+    "password" : "generic123",
+    "email" : "generic@man.com",
+    "date_of_birth" : "May 1, 1984"
+  }, 
+];
+
+var updateUser = [
+  {
+    "username" : "genericman", 
+    "password" : "generic123",
+    "email" : "generic@man.com",
+    "date_of_birth" : "May 1, 1984"
+  }, 
+];
+
+var removeUser = [
+  {
+    "username" : "genericman", 
+    "password" : "generic123",
+    "email" : "generic@man.com",
+    "date_of_birth" : "May 1, 1984"
+  }, 
+];
+
+var addMovie = [
+  {
+    title: 'Winged Migration',
+    genre: 'nature tail',
+    director: 'jacques perrin, jacques cluzard, michael debats',
+    main_actor: 'birds',
+    country: 'world',
+    year: 2003
+  }, 
+];
+
+var removeMovie = [
+  {
+    title: 'Winged Migration',
+    genre: 'nature tail',
+    director: 'jacques perrin, jacques cluzard, michael debats',
+    main_actor: 'birds',
+    country: 'world',
+    year: 2003
+  }, 
+];
+
   // Morgan middleware library - log all terminal requests 
   app.use(morgan('common'));
   
@@ -118,27 +167,117 @@ var topMovies = [
   res.json(topMovies);
   });
 
+  app.get('/title', function(req, res) {
+  res.json(topMovies);
+  });
+
   app.get('/genre', function(req, res) {
-    var responseText =
-      'You\ve made it to the genre endpoint';
-    res.send(responseText);
+  res.json(topMovies);
+  });
+
+  app.get('/director', function(req, res) {
+  res.json(topMovies);
+  });
+
+  app.get('/main_actor', function(req, res) {
+  res.json(topMovies);
+  });
+
+  app.get('/country', function(req, res) {
+  res.json(topMovies);
+  });
+
+  app.get('/year', function(req, res) {
+  res.json(topMovies);
+  });
+
+  // POST request 
+
+  app.post('/username', function(req, res) {
+  res.json(addUser);
+  });
+
+  app.put('/password', function(req, res) {
+  res.json(updateUser);
+  });
+
+  app.post('/title', function(req, res) {
+  res.json(addMovie);
+  });
+
+  // DELETE request 
+
+  app.delete('/title', function(req, res) {
+  res.json(removeMovie);
+  });
+
+  app.delete('/username', function(req, res) {
+  res.json(removeUser);
   });
 
   app.get('/title', function(req, res) {
     var responseText =
-    'You\ve made it to the genre endpoint';
+    'You\'ve made it to the genre endpoint';
     res.send(responseText);
   });
 
-  app.get('/year', function(req, res) {
+  app.get('/genre', function(req, res) {
     var responseText =
-    'You\ve made it to the genre endpoint';
+      'You\'ve made it to the genre endpoint';
     res.send(responseText);
   });
 
   app.get('/director', function(req, res) {
     var responseText =
-    'You\ve made it to the genre endpoint';
+    'You\'ve made it to the genre endpoint';
+    res.send(responseText);
+  });
+  
+  app.get('/main_actor', function(req, res) {
+    var responseText =
+    'You\'ve made it to the genre endpoint';
+    res.send(responseText);
+  });
+
+  app.get('/country', function(req, res) {
+    var responseText =
+    'You\'ve made it to the genre endpoint';
+    res.send(responseText);
+  });
+
+  app.get('year', function(req, res) {
+    var responseText =
+    'You\'ve made it to the genre endpoint';
+    res.send(responseText);
+  });
+
+  app.post('username', function(req, res) {
+    var responseText =
+    'You\'ve made it to the genre endpoint';
+    res.send(responseText);
+  });
+
+  app.put('password', function(req, res) {
+    var responseText =
+    'You\'ve made it to the genre endpoint';
+    res.send(responseText);
+  });
+
+  app.put('username', function(req, res) {
+    var responseText =
+    'You\'ve made it to the genre endpoint';
+    res.send(responseText);
+  });
+
+  app.delete('removeuser', function(req, res) {
+    var responseText =
+    'You\'ve made it to the genre endpoint';
+    res.send(responseText);
+  });
+
+  app.delete('removemovie', function(req, res) {
+    var responseText =
+    'You\'ve made it to the genre endpoint';
     res.send(responseText);
   });
 
