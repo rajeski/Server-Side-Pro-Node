@@ -100,16 +100,16 @@ var addUser = [
     "username" : "genericman", 
     "password" : "generic123",
     "email" : "generic@man.com",
-    "date_of_birth" : "May 1, 1984"
+    "date_of_birth" : "1984-05-01"
   }, 
 ];
 
 var updateUser = [
   {
-    "username" : "genericman", 
-    "password" : "generic123",
-    "email" : "generic@man.com",
-    "date_of_birth" : "May 1, 1984"
+    "username" : "genericwoman", 
+    "password" : "generic456",
+    "email" : "generic@woman.com",
+    "date_of_birth" : "1989-03-01"
   }, 
 ];
 
@@ -118,7 +118,7 @@ var removeUser = [
     "username" : "genericman", 
     "password" : "generic123",
     "email" : "generic@man.com",
-    "date_of_birth" : "May 1, 1984"
+    "date_of_birth" : "1984-05-01"
   }, 
 ];
 
