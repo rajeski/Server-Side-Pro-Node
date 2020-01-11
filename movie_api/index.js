@@ -15,7 +15,7 @@ const app = express();
 var topMovies = [
     {
       title: 'Rashomon',
-      genre: 'crime drama',
+      genre: 'drama / mystery',
       director: 'akira kurosawa', 
       main_actor: 'toshiro mifune', 
       country: 'japan', 
@@ -79,7 +79,7 @@ var topMovies = [
     },
     {
       title: 'Bound',
-      genre: 'neo-noir crime',
+      genre: 'neo-noir crime thriller',
       director: 'the wachowskis',
       main_actor: 'gina gershon',
       country: 'america',
