@@ -166,43 +166,7 @@ app.use(function(err, req, res, next) {
   res.status(500).send('An error occured');
 });
   
-// GET request
-
-// app.get('/', function(req, res) {
-//   var responseText =
-//   'Welcome to the My Flicks Movie App. Herein you can find detailed information about movies.';
-//   res.send(responseText);
-// });
-
-// app.get('/movies', function(req, res) {
-//   res.json(topMovies);
-// });
-
-// app.get('/title', function(req, res) {
-//   res.json(topMovies);
-// });
-
-// app.get('/genre', function(req, res) {
-//   res.json(topMovies);
-// });
-
-// app.get('/director', function(req, res) {
-//   res.json(topMovies);
-// });
-
-// app.get('/main_actor', function(req, res) {
-//   res.json(topMovies);
-// });
-
-// app.get('/country', function(req, res) {
-//   res.json(topMovies);
-// });
-
-// app.get('/year', function(req, res) {
-//   res.json(topMovies);
-// });
-
-// POST request 
+// POST users request 
 
 // CREATE Add a User
 /* We'll expect JSON in this format
@@ -239,9 +203,54 @@ app.post('/users', function(req, res) {
   });
 });
 
-// app.post('/user', function(req, res) {
-//   res.json(addUser);
-// });
+// PUT users request 
+
+// UPDATE user's info, by username
+/* We'll expect JSON in this format
+{
+  Username: String,
+  (required)
+  Password: String, 
+  (required)
+  Email: String,
+  (required)
+  Birthday: Data
+}*/
+
+app.put('/users/:Username', function(req, res) {
+  Users.findOneAndUpdate({ Username : req.params.Username }, { $set :
+  {
+    Username : req.body.Username,
+    Password : req.body.Password,
+    Email : req.body.Email,
+    Birthday : req.body.Birthday
+  }},
+  { new : true }, // Return updated document 
+  function(err, updatedUser) {
+    if(err) {
+      console.error(err);
+      res.status(500).send("Error: " +err);
+    } else {
+      res.json(updatedUser)
+    }
+  })
+});
+
+// POST Add movie, user's favorites' list 
+app.post('/users/:Username/Movies/:MovieID', function(req, res) {
+  Users.findOneAndUpdate({ Username : req.params.Username }, {
+    $push : { FavoriteMovies : req.params.MovieID }
+  },
+  { new : true }, // Return updated document 
+  function(err, updatedUser) {
+    if (err) {
+      console.error(err);
+      res.status(500).send("Error: " + err);
+    } else {
+      res.json(updatedUser)
+    }
+  })
+});
 
 // READ GET top movies
 
@@ -367,66 +376,9 @@ app.get('/users/:Username', function(req, res) {
   });
 });
 
-// app.post('/title', function(req, res) {
-//   res.json(addMovie);
-// });
-
-// PUT request 
-
-// UPDATE a user's info, by username
-/* We'll expect JSON in this format
-{
-  Username: String,
-  (required)
-  Password: String, 
-  (required)
-  Email: String,
-  (required)
-  Birthday: Data
-}*/
-
-app.put('/users/:Username', function(req, res) {
-  Users.findOneAndUpdate({ Username : req.params.Username }, { $set :
-  {
-    Username : req.body.Username,
-    Password : req.body.Password,
-    Email : req.body.Email,
-    Birthday : req.body.Birthday
-  }},
-  { new : true }, // This line makes sure that the updated document is returned
-  function(err, updatedUser) {
-    if(err) {
-      console.error(err);
-      res.status(500).send("Error: " +err);
-    } else {
-      res.json(updatedUser)
-    }
-  })
-});
-
-// Add a movie to a user's list of favorites
-app.post('/users/:Username/Movies/:MovieID', function(req, res) {
-  Users.findOneAndUpdate({ Username : req.params.Username }, {
-    $push : { FavoriteMovies : req.params.MovieID }
-  },
-  { new : true }, // This line makes sure that the updated document is returned
-  function(err, updatedUser) {
-    if (err) {
-      console.error(err);
-      res.status(500).send("Error: " + err);
-    } else {
-      res.json(updatedUser)
-    }
-  })
-});
-
-// app.put('/user', function(req, res) {
-//   res.json(addUser);
-// });
-
 // DELETE request 
 
-// Delete a user by username
+// Delete user by username
 app.delete('/users/:Username', function(req, res) {
   Users.findOneAndRemove({ Username: req.params.Username })
   .then(function(user) {
@@ -441,82 +393,6 @@ app.delete('/users/:Username', function(req, res) {
     res.status(500).send("Error: " + err);
   });
 });
-
-// app.delete('/title', function(req, res) {
-//   res.json(removeMovie);
-// });
-
-// app.delete('/user', function(req, res) {
-//   res.json(removeUser);
-// });
-
-// (Initial) Postman API Testing Text 
-
-// app.get('/title', function(req, res) {
-//   var responseText =
-//   'You\'ve made it to title endpoint';
-//   res.send(responseText);
-// });
-
-// app.get('/genre', function(req, res) {
-//   var responseText =
-//   'You\'ve made it to the genre endpoint';
-//   res.send(responseText);
-// });
-
-// app.get('/director', function(req, res) {
-//   var responseText =
-//   'You\'ve made it to the director endpoint';
-//   res.send(responseText);
-// });
-
-// app.get('/main_actor', function(req, res) {
-//   var responseText =
-//   'You\'ve made it to the main_actor endpoint';
-//   res.send(responseText);
-// });
-
-// app.get('/country', function(req, res) {
-//   var responseText =
-//   'You\'ve made it to the country endpoint';
-//   res.send(responseText);
-// });
-
-// app.get('/year', function(req, res) {
-//   var responseText =
-//   'You\'ve made it to the year endpoint';
-//   res.send(responseText);
-// });
-
-// app.post('/user', function(req, res) {
-//   var responseText =
-//   'You\'ve made it to the user endpoint';
-//   res.send(responseText);
-// });
-
-// app.post('/title', function(req, res) {
-//   var responseText = 
-//   'You\'ve made it to the title endpoint';
-//   res.send(responseText); 
-// });
-
-// app.put('/user', function(req, res) {
-//   var responseText =
-//   'You\'ve made it to the user endpoint';
-//   res.send(responseText);
-// });
-
-// app.delete('/removeuser/: userID', function(req, res) {
-//   var responseText =
-//   'You\'ve made it to the removeuser endpoint';
-//   res.send(responseText);
-// });
-
-// app.delete('/removemovie', function(req, res) {
-//   var responseText =
-//   'You\'ve made it to the removemovie endpoint';
-//   res.send(responseText);
-// });
 
 app.use((err, req, res, next) => {
   var logEntryTimestamp = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
