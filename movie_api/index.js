@@ -168,39 +168,39 @@ app.use(function(err, req, res, next) {
   
 // GET request
 
-app.get('/', function(req, res) {
-  var responseText =
-  'Welcome to the My Flicks Movie App. Herein you can find detailed information about movies.';
-  res.send(responseText);
-});
+// app.get('/', function(req, res) {
+//   var responseText =
+//   'Welcome to the My Flicks Movie App. Herein you can find detailed information about movies.';
+//   res.send(responseText);
+// });
 
-app.get('/movies', function(req, res) {
-  res.json(topMovies);
-});
+// app.get('/movies', function(req, res) {
+//   res.json(topMovies);
+// });
 
-app.get('/title', function(req, res) {
-  res.json(topMovies);
-});
+// app.get('/title', function(req, res) {
+//   res.json(topMovies);
+// });
 
-app.get('/genre', function(req, res) {
-  res.json(topMovies);
-});
+// app.get('/genre', function(req, res) {
+//   res.json(topMovies);
+// });
 
-app.get('/director', function(req, res) {
-  res.json(topMovies);
-});
+// app.get('/director', function(req, res) {
+//   res.json(topMovies);
+// });
 
-app.get('/main_actor', function(req, res) {
-  res.json(topMovies);
-});
+// app.get('/main_actor', function(req, res) {
+//   res.json(topMovies);
+// });
 
-app.get('/country', function(req, res) {
-  res.json(topMovies);
-});
+// app.get('/country', function(req, res) {
+//   res.json(topMovies);
+// });
 
-app.get('/year', function(req, res) {
-  res.json(topMovies);
-});
+// app.get('/year', function(req, res) {
+//   res.json(topMovies);
+// });
 
 // POST request 
 
@@ -242,8 +242,106 @@ app.post('/users', function(req, res) {
 // app.post('/user', function(req, res) {
 //   res.json(addUser);
 // });
+
+// READ GET top movies
+
+app.get('/topMovies', function(req, res) {
+
+  Users.find()
+  .then(function(users) {
+    res.status(201).json(users)
+  })
+  .catch(function(err) {
+    console.error(err);
+    res.status(500).send("Error: " + err);
+  });
+});
+
+// READ GET genres
+
+app.get('/genre', function(req, res) {
+
+  Users.find()
+  .then(function(users) {
+    res.status(201).json(users)
+  })
+  .catch(function(err) {
+    console.error(err);
+    res.status(500).send("Error: " + err);
+  });
+});
+
+// READ GET title
+
+app.get('/title', function(req, res) {
+
+  Users.find()
+  .then(function(users) {
+    res.status(201).json(users)
+  })
+  .catch(function(err) {
+    console.error(err);
+    res.status(500).send("Error: " + err);
+  });
+});
    
-// READ Get all users
+// READ GET year
+
+app.get('/year', function(req, res) {
+
+  Users.find()
+  .then(function(users) {
+    res.status(201).json(users)
+  })
+  .catch(function(err) {
+    console.error(err);
+    res.status(500).send("Error: " + err);
+  });
+});
+
+// READ GET director
+
+app.get('/director', function(req, res) {
+
+  Users.find()
+  .then(function(users) {
+    res.status(201).json(users)
+  })
+  .catch(function(err) {
+    console.error(err);
+    res.status(500).send("Error: " + err);
+  });
+});
+
+// READ GET main actor
+
+app.get('/main_actor', function(req, res) {
+
+  Users.find()
+  .then(function(users) {
+    res.status(201).json(users)
+  })
+  .catch(function(err) {
+    console.error(err);
+    res.status(500).send("Error: " + err);
+  });
+});
+
+// READ GET country
+
+app.get('/country', function(req, res) {
+
+  Users.find()
+  .then(function(users) {
+    res.status(201).json(users)
+  })
+  .catch(function(err) {
+    console.error(err);
+    res.status(500).send("Error: " + err);
+  });
+});
+
+// READ GET all users
 
 app.get('/users', function(req, res) {
 
@@ -269,9 +367,9 @@ app.get('/users/:Username', function(req, res) {
   });
 });
 
-app.post('/title', function(req, res) {
-  res.json(addMovie);
-});
+// app.post('/title', function(req, res) {
+//   res.json(addMovie);
+// });
 
 // PUT request 
 
@@ -344,81 +442,81 @@ app.delete('/users/:Username', function(req, res) {
   });
 });
 
-app.delete('/title', function(req, res) {
-  res.json(removeMovie);
-});
+// app.delete('/title', function(req, res) {
+//   res.json(removeMovie);
+// });
 
-app.delete('/user', function(req, res) {
-  res.json(removeUser);
-});
+// app.delete('/user', function(req, res) {
+//   res.json(removeUser);
+// });
 
-// Postman API Testing Text 
+// (Initial) Postman API Testing Text 
 
-app.get('/title', function(req, res) {
-  var responseText =
-  'You\'ve made it to title endpoint';
-  res.send(responseText);
-});
+// app.get('/title', function(req, res) {
+//   var responseText =
+//   'You\'ve made it to title endpoint';
+//   res.send(responseText);
+// });
 
-app.get('/genre', function(req, res) {
-  var responseText =
-  'You\'ve made it to the genre endpoint';
-  res.send(responseText);
-});
+// app.get('/genre', function(req, res) {
+//   var responseText =
+//   'You\'ve made it to the genre endpoint';
+//   res.send(responseText);
+// });
 
-app.get('/director', function(req, res) {
-  var responseText =
-  'You\'ve made it to the director endpoint';
-  res.send(responseText);
-});
+// app.get('/director', function(req, res) {
+//   var responseText =
+//   'You\'ve made it to the director endpoint';
+//   res.send(responseText);
+// });
 
-app.get('/main_actor', function(req, res) {
-  var responseText =
-  'You\'ve made it to the main_actor endpoint';
-  res.send(responseText);
-});
+// app.get('/main_actor', function(req, res) {
+//   var responseText =
+//   'You\'ve made it to the main_actor endpoint';
+//   res.send(responseText);
+// });
 
-app.get('/country', function(req, res) {
-  var responseText =
-  'You\'ve made it to the country endpoint';
-  res.send(responseText);
-});
+// app.get('/country', function(req, res) {
+//   var responseText =
+//   'You\'ve made it to the country endpoint';
+//   res.send(responseText);
+// });
 
-app.get('/year', function(req, res) {
-  var responseText =
-  'You\'ve made it to the year endpoint';
-  res.send(responseText);
-});
+// app.get('/year', function(req, res) {
+//   var responseText =
+//   'You\'ve made it to the year endpoint';
+//   res.send(responseText);
+// });
 
-app.post('/user', function(req, res) {
-  var responseText =
-  'You\'ve made it to the user endpoint';
-  res.send(responseText);
-});
+// app.post('/user', function(req, res) {
+//   var responseText =
+//   'You\'ve made it to the user endpoint';
+//   res.send(responseText);
+// });
 
-app.post('/title', function(req, res) {
-  var responseText = 
-  'You\'ve made it to the title endpoint';
-  res.send(responseText); 
-});
+// app.post('/title', function(req, res) {
+//   var responseText = 
+//   'You\'ve made it to the title endpoint';
+//   res.send(responseText); 
+// });
 
-app.put('/user', function(req, res) {
-  var responseText =
-  'You\'ve made it to the user endpoint';
-  res.send(responseText);
-});
+// app.put('/user', function(req, res) {
+//   var responseText =
+//   'You\'ve made it to the user endpoint';
+//   res.send(responseText);
+// });
 
-app.delete('/removeuser/: userID', function(req, res) {
-  var responseText =
-  'You\'ve made it to the removeuser endpoint';
-  res.send(responseText);
-});
+// app.delete('/removeuser/: userID', function(req, res) {
+//   var responseText =
+//   'You\'ve made it to the removeuser endpoint';
+//   res.send(responseText);
+// });
 
-app.delete('/removemovie', function(req, res) {
-  var responseText =
-  'You\'ve made it to the removemovie endpoint';
-  res.send(responseText);
-});
+// app.delete('/removemovie', function(req, res) {
+//   var responseText =
+//   'You\'ve made it to the removemovie endpoint';
+//   res.send(responseText);
+// });
 
 app.use((err, req, res, next) => {
   var logEntryTimestamp = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
