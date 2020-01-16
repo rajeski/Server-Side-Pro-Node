@@ -254,17 +254,17 @@ app.post('/users/:Username/Movies/:MovieID', function(req, res) {
 
 // READ GET top movies
 
-app.get('/topMovies', function(req, res) {
+// app.get('/topMovies', function(req, res) {
 
-  Users.find()
-  .then(function(users) {
-    res.status(201).json(users)
-  })
-  .catch(function(err) {
-    console.error(err);
-    res.status(500).send("Error: " + err);
-  });
-});
+//   Users.find()
+//   .then(function(users) {
+//     res.status(201).json(users)
+//   })
+//   .catch(function(err) {
+//     console.error(err);
+//     res.status(500).send("Error: " + err);
+//   });
+// });
 
 // READ GET genres
 
