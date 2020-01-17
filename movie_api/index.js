@@ -18,142 +18,6 @@ const morgan = require('morgan');
 
 const app = express();
 
-// Server Configuration 
-
-// const PORT = 8080; 
-
-var topMovies = [
-    {
-      title: 'Rashomon',
-      genre: 'drama / mystery',
-      director: 'akira kurosawa', 
-      main_actor: 'toshiro mifune', 
-      country: 'japan', 
-      year: 1950
-    },
-    {
-      title: 'Tokyo Story',
-      genre: 'drama',
-      director: 'yasujiro ozu',
-      main_actor: 'chishu ryu',
-      country: 'japan',
-      year: 1953 
-    },
-    {
-      title: 'Godzilla (Gojira)', 
-      genre: 'tokusatsu (special filming) protest-movie',
-      director: 'ishiro honda',
-      main_actor: 'haruo nakajima',
-      country: 'japan',
-      year: 1954 
-    },
-    {
-      title: 'Paths of Glory',
-      genre: 'anti-war',
-      director: 'stanley kubrick',
-      main_actor: 'kirk douglas',
-      country: 'germany',
-      year: 1957
-    },
-    {
-      title: 'Spartacus',
-      genre: 'epic historical drama',
-      director: 'stanley kubrick',
-      main_actor: 'kirk douglas',
-      country: 'america and spain',
-      year: 1960
-    },
-    {
-      title: '2001: A Space Odyssey',
-      genre: 'epic science fiction',
-      director: 'stanley kubrick',
-      main_actor: 'keir dullea',
-      country: 'england',
-      year: 1968
-    },
-    {
-      title: 'Chinatown',
-      genre: 'neo-noir mystery',
-      director: 'roman polanski',
-      main_actor: 'jack nicholson',
-      country: 'america',
-      year: 1974
-    },
-    {
-      title: 'Gallipoli',
-      genre: 'war drama',
-      director: 'peter weir',
-      main_actor: 'mel gibson',
-      country: 'australia',
-      year: 1981
-    },
-    {
-      title: 'Bound',
-      genre: 'neo-noir crime thriller',
-      director: 'the wachowskis',
-      main_actor: 'gina gershon',
-      country: 'america',
-      year: 1996
-    },
-    {
-      title: 'Ronin',
-      genre: 'action thriller',
-      director: 'john frankenheimer',
-      main_actor: 'robert deniro',
-      country: 'france',
-      year: 1998
-    },
-  ];
-  
-var addUser = [
-  {
-    "username" : "genericman", 
-    "password" : "generic123",
-    "email" : "generic@man.com",
-    "date_of_birth" : "1984-05-01"
-  }, 
-];
-
-var updateUser = [
-  {
-    "username" : "genericwoman", 
-    "password" : "generic456",
-    "email" : "generic@woman.com",
-    "date_of_birth" : "1989-03-01"
-  }, 
-];
-
-var removeUser = [
-  {
-    "username" : "genericman", 
-    "password" : "generic123",
-    "email" : "generic@man.com",
-    "date_of_birth" : "1984-05-01"
-  }, 
-];
-
-var addMovie = [
-  {
-    title: 'Winged Migration',
-    genre: 'nature tail',
-    director: 'jacques perrin, jacques cluzard, michael debats',
-    main_actor: 'birds',
-    country: 'world',
-    year: 2003
-  }, 
-];
-
-var removeMovie = [
-  {
-    title: 'Winged Migration',
-    genre: 'nature tail',
-    director: 'jacques perrin, jacques cluzard, michael debats',
-    main_actor: 'birds',
-    country: 'world',
-    year: 2003
-  }, 
-];
-
 // Morgan middleware library - log all terminal requests 
 app.use(morgan('common'));
   
@@ -168,15 +32,7 @@ app.use(function(err, req, res, next) {
   
 // POST users request 
 
-// CREATE Add a User
-/* We'll expect JSON in this format
-{
-  ID : Integer,
-  Username : String, 
-  Password : String, 
-  Email : String, 
-  Birthday : Date
-}*/
+// https://localhost:27017/MyFlicksDB/users/?Username=Bob&Password=BobsPassword&Email=blah@blah.com&Birthday=23/03/1990
 
 app.post('/users', function(req, res) {
   Users.findOne( {Username : req.body.Username })
@@ -204,18 +60,6 @@ app.post('/users', function(req, res) {
 });
 
 // PUT users request 
-
-// UPDATE user's info, by username
-/* We'll expect JSON in this format
-{
-  Username: String,
-  (required)
-  Password: String, 
-  (required)
-  Email: String,
-  (required)
-  Birthday: Data
-}*/
 
 app.put('/users', function(req, res) {
   Users.findOneAndUpdate({ Username : req.params.Username }, { $set :
@@ -252,20 +96,6 @@ app.post('/users/:Username/Movies/:MovieID', function(req, res) {
   })
 });
 
-// READ GET top movies
-
-// app.get('/topMovies', function(req, res) {
-
-//   Users.find()
-//   .then(function(users) {
-//     res.status(201).json(users)
-//   })
-//   .catch(function(err) {
-//     console.error(err);
-//     res.status(500).send("Error: " + err);
-//   });
-// });
-
 // READ GET genres
 
 app.get('/genre', function(req, res) {
@@ -280,65 +110,9 @@ app.get('/genre', function(req, res) {
   });
 });
 
-// READ GET title
-
-app.get('/title', function(req, res) {
-
-  Users.find()
-  .then(function(users) {
-    res.status(201).json(users)
-  })
-  .catch(function(err) {
-    console.error(err);
-    res.status(500).send("Error: " + err);
-  });
-});
-   
-// READ GET year
-
-app.get('/year', function(req, res) {
-
-  Users.find()
-  .then(function(users) {
-    res.status(201).json(users)
-  })
-  .catch(function(err) {
-    console.error(err);
-    res.status(500).send("Error: " + err);
-  });
-});
-
 // READ GET director
 
 app.get('/director', function(req, res) {
-
-  Users.find()
-  .then(function(users) {
-    res.status(201).json(users)
-  })
-  .catch(function(err) {
-    console.error(err);
-    res.status(500).send("Error: " + err);
-  });
-});
-
-// READ GET main actor
-
-app.get('/main_actor', function(req, res) {
-
-  Users.find()
-  .then(function(users) {
-    res.status(201).json(users)
-  })
-  .catch(function(err) {
-    console.error(err);
-    res.status(500).send("Error: " + err);
-  });
-});
-
-// READ GET country
-
-app.get('/country', function(req, res) {
 
   Users.find()
   .then(function(users) {
