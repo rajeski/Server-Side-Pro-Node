@@ -61,7 +61,7 @@ app.post('/users', function(req, res) {
 
 // PUT users request 
 
-app.put('/users', function(req, res) {
+app.put('/users/:Username', function(req, res) {
   Users.findOneAndUpdate({ Username : req.params.Username }, { $set :
   {
     Username : req.body.Username,
