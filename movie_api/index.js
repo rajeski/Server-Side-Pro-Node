@@ -30,7 +30,7 @@ app.use(function(err, req, res, next) {
   res.status(500).send('An error occured');
 });
   
-// POST users request 
+// POST users request (Example)
 
 // https://localhost:27017/MyFlicksDB/users/?Username=Bob&Password=BobsPassword&Email=blah@blah.com&Birthday=23/03/1990
 
