@@ -8,11 +8,9 @@ const Users = Models.User;
 
 mongoose.connect('mongodb://localhost:27017/MyFlicksDB', {useNewUrlParser: true}); 
 
-// Require npm Body-Parser (Is this correct?)
+// Require npm Body-Parser 
 
 const bodyParser = require('body-parser');
-
-app.use(bodyParser.json());
 
 // Import Express
 
@@ -23,6 +21,7 @@ const morgan = require('morgan');
 // Create New Express App
 
 const app = express();
+app.use(bodyParser.json());
 
 // Morgan middleware library - log all terminal requests 
 app.use(morgan('common'));
@@ -40,7 +39,7 @@ app.use(function(err, req, res, next) {
 
 // https://localhost:27017/MyFlicksDB/users/?Username=Bob&Password=BobsPassword&Email=blah@blah.com&Birthday=23/03/1990
 
-app.post('/users/:Username', function(req, res) {
+app.post('/users', function(req, res) {
   Users.findOne( {Username : req.body.Username })
   .then(function(user) {
     if (user) {
