@@ -129,6 +129,20 @@ app.get('/director', function(req, res) {
   });
 });
 
+// READ GET movies
+
+app.get('/movies', function(req, res) {
+
+  Users.find()
+  .then(function(users) {
+    res.status(201).json(users)
+  })
+  .catch(function(err) {
+    console.error(err);
+    res.status(500).send("Error: " + err);
+  });
+});
+
 // READ GET all users
 
 app.get('/users', function(req, res) {
@@ -158,7 +172,7 @@ app.get('/users/:Username', function(req, res) {
 // DELETE request 
 
 // Delete user by username
-app.delete('/users/:Username', function(req, res) {
+app.delete('/users', function(req, res) {
   Users.findOneAndRemove({ Username: req.params.Username })
   .then(function(user) {
     if (!user) {
