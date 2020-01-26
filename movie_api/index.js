@@ -101,6 +101,53 @@ app.post('/users/:Username/Movies/:MovieID', function(req, res) {
   })
 });
 
+// DELETE Remove movie, user's favorites' list
+
+app.delete('/users/:Username/FavoriteMovies/:MovieID', function(req, res) {
+  const { Username, MovieID } = req.params;	 
+  console.log(Username, MovieID);	 
+  Users.findOneAndUpdate(	  
+    // Update requested information
+    {	    
+      Username: Username	      
+    },	    
+    {	    
+      $pull: {	      
+        FavoriteMovies: MovieID	       
+      }	      
+    },	    
+    {	    
+      new: true	 
+    }, // Return updated document 
+    function(err, updatedUser) {	
+      if (err) {	      
+        console.error(err);	        
+        res.status(500).send('Error: ' + err);	     
+      } else {	     
+        res.json(updatedUser);	   
+      }	      
+    }	    
+  );	 
+});
+
+// DELETE request 
+
+// Delete user by username
+app.delete('/users', function(req, res) {
+  Users.findOneAndRemove({ Username: req.params.Username })
+  .then(function(user) {
+    if (!user) {
+      res.status(400).send(req.params.Username + " was not found");
+    } else {
+      res.status(200).send(req.params.Username + " was deleted.");
+    }
+  })
+  .catch(function(err) {
+    console.error(err);
+    res.status(500).send("Error: " + err);
+  });
+});
+
 // READ GET genres
 
 app.get('/genre', function(req, res) {
@@ -162,24 +209,6 @@ app.get('/users/:Username', function(req, res) {
   Users.findOne( {Username : req.params.Username })
   .then(function(users) {
     res.json(user)
-  })
-  .catch(function(err) {
-    console.error(err);
-    res.status(500).send("Error: " + err);
-  });
-});
-
-// DELETE request 
-
-// Delete user by username
-app.delete('/users', function(req, res) {
-  Users.findOneAndRemove({ Username: req.params.Username })
-  .then(function(user) {
-    if (!user) {
-      res.status(400).send(req.params.Username + " was not found");
-    } else {
-      res.status(200).send(req.params.Username + " was deleted.");
-    }
   })
   .catch(function(err) {
     console.error(err);
