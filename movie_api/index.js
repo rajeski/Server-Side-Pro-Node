@@ -35,7 +35,7 @@ app.use(function(err, req, res, next) {
   res.status(500).send('An error occured');
 });
   
-// POST users request 
+// POST users' request 
 
 // https://localhost:27017/MyFlicksDB/users/?Username=Bob&Password=BobsPassword&Email=blah@blah.com&Birthday=23/03/1990
 
@@ -64,9 +64,10 @@ app.post('/users', function(req, res) {
   });
 });
 
-// PUT users request 
+// PUT users' request 
 
 app.put('/users/:Username', function(req, res) {
+  console.log('REQ', req.body);
   Users.findOneAndUpdate({ Username : req.params.Username }, { $set :
   {
     Username : req.body.Username,
@@ -133,7 +134,8 @@ app.delete('/users/:Username/FavoriteMovies/:MovieID', function(req, res) {
 // DELETE request 
 
 // Delete user by username
-app.delete('/users', function(req, res) {
+app.delete('/users/:Username', function(req, res) {
+  console.log('REQ', req.body);
   Users.findOneAndRemove({ Username: req.params.Username })
   .then(function(user) {
     if (!user) {
@@ -180,7 +182,7 @@ app.get('/director', function(req, res) {
 
 app.get('/movies', function(req, res) {
 
-  Users.find()
+  Movie.find()
   .then(function(users) {
     res.status(201).json(users)
   })
@@ -189,6 +191,20 @@ app.get('/movies', function(req, res) {
     res.status(500).send("Error: " + err);
   });
 });
+
+app.post('/movies', function(req, res) {
+  Movie.create({
+        Title: req.body.Title, 
+        Description: req.body.Description, 
+        Genre: req.body.Genre, 
+        Director: req.body.Director  
+      })
+      .then(function(movies) { res.status(201).json(movies) })
+      .catch(function(error) {
+        console.error(error);
+        res.status(500).send("Error: " + error);
+      })
+    });
 
 // READ GET all users
 
