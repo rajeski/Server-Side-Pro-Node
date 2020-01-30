@@ -3,7 +3,7 @@
 const mongoose = require('mongoose');
 const Models = require('./models.js'); 
 
-const Movies = Models.Movie; 
+const Movie = Models.Movie; 
 const Users = Models.User; 
 
 mongoose.connect('mongodb://localhost:27017/MyFlicksDB', {useNewUrlParser: true}); 
