@@ -154,7 +154,7 @@ app.delete('/users/:Username', function(req, res) {
 
 app.get('/movies/genres/:Name', function(req, res) {
   Movies.findOne({
-    "Genre.Name": req.params.Name
+    'Genre.Name': req.params.Name
   })
     .then((movies) => {
       res.json(movies.Genre);
