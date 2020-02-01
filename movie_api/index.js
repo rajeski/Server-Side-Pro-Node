@@ -152,31 +152,35 @@ app.delete('/users/:Username', function(req, res) {
 
 // READ GET genres
 
-app.get('/genre', function(req, res) {
-
-  Users.find()
-  .then(function(users) {
-    res.status(201).json(users)
+app.get('/movies/genres/:Name', function(req, res) {
+  Movies.findOne({
+    "Genre.Name": req.params.Name
   })
-  .catch(function(err) {
-    console.error(err);
-    res.status(500).send("Error: " + err);
-  });
-});
+    .then((movies) => {
+      res.json(movies.Genre);
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send("Error: " + error);
+    });
+}
+);
 
 // READ GET director
 
-app.get('/director', function(req, res) {
-
-  Users.find()
-  .then(function(users) {
-    res.status(201).json(users)
+app.get('/movies/directors/:Name', function(req, res) {
+  Movies.findOne({
+    'Director.Name': req.params.Name
   })
-  .catch(function(err) {
-    console.error(err);
-    res.status(500).send("Error: " + err);
-  });
-});
+    .then((movies) => {
+      res.json(movies.Director);
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send("Error: " + error);
+    });
+}
+);
 
 // READ GET movies
 
