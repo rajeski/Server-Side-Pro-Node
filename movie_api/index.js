@@ -153,7 +153,7 @@ app.delete('/users/:Username', function(req, res) {
 // READ GET genres
 
 app.get('/movies/genres/:Name', function(req, res) {
-  Movies.findOne({
+  Movie.findOne({
     'Genre.Name': req.params.Name
   })
     .then((movies) => {
@@ -169,7 +169,7 @@ app.get('/movies/genres/:Name', function(req, res) {
 // READ GET director
 
 app.get('/movies/directors/:Name', function(req, res) {
-  Movies.findOne({
+  Movie.findOne({
     'Director.Name': req.params.Name
   })
     .then((movies) => {
