@@ -3,6 +3,9 @@
 const mongoose = require('mongoose');
 const Models = require('./models.js'); 
 
+const passport = require('passport');
+require('./passport');
+
 const Movie = Models.Movie; 
 const Users = Models.User; 
 
@@ -18,10 +21,15 @@ const express = require('express');
 
 const morgan = require('morgan');
 
+// const passport = require('passport');
+// require('./passport');
+
 // Create New Express App
 
 const app = express();
 app.use(bodyParser.json());
+
+var auth = require('./auth')(app);
 
 // Morgan middleware library - log all terminal requests 
 app.use(morgan('common'));
@@ -152,8 +160,8 @@ app.delete('/users/:Username', function(req, res) {
 
 // READ GET genres
 
-app.get('/movies/genres/:Name', function(req, res) {
-  Movie.findOne({
+app.get('/genres/:Name', function(req, res) {
+  Movie.find({
     'Genre.Name': req.params.Name
   })
     .then((movies) => {
@@ -168,8 +176,8 @@ app.get('/movies/genres/:Name', function(req, res) {
 
 // READ GET director
 
-app.get('/movies/directors/:Name', function(req, res) {
-  Movie.findOne({
+app.get('/director/:Name', function(req, res) {
+  Movie.find({
     'Director.Name': req.params.Name
   })
     .then((movies) => {
@@ -184,8 +192,8 @@ app.get('/movies/directors/:Name', function(req, res) {
 
 // READ GET movies
 
-app.get('/movies', function(req, res) {
-
+app.get('/movies', passport.authenticate('jwt', { session: false }), 
+function(req, res) {
   Movie.find()
   .then(function(users) {
     res.status(201).json(users)

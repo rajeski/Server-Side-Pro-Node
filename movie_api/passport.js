@@ -1,5 +1,5 @@
 const passport = require('passport'),
-    LocalStrategy = require('passport-local').Strategy,
+    LocalStrategy = require('passport-local').Strategy;
     Models = require('./models.js'),
     passportJWT = require('passport-jwt');
 
@@ -32,6 +32,7 @@ passport.use(new JWTStrategy({
 }, (jwtPayload, callback) => {
  return Users.findById(jwtPayload._id)
  .then((user) => {
+ return callback(null, user);
 })
 .catch((error) => {
     return callback(error)
