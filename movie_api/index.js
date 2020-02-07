@@ -165,7 +165,7 @@ app.get('/genres/:Name', function(req, res) {
     'Genre.Name': req.params.Name
   })
     .then((movies) => {
-      res.json(movies.Genre);
+      res.json(movies);
     })
     .catch((error) => {
       console.error(error);
@@ -181,7 +181,7 @@ app.get('/director/:Name', function(req, res) {
     'Director.Name': req.params.Name
   })
     .then((movies) => {
-      res.json(movies.Director);
+      res.json(movies);
     })
     .catch((error) => {
       console.error(error);
