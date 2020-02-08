@@ -203,7 +203,8 @@ function(req, res) {
   });
 });
 
-app.post('/movies', function(req, res) {
+app.post('/movies', 
+function(req, res) {
   Movie.create({
         Title: req.body.Title, 
         Description: req.body.Description, 
@@ -216,6 +217,23 @@ app.post('/movies', function(req, res) {
         res.status(500).send("Error: " + error);
       })
     });
+
+// READ GET single movie by title
+
+app.get('/movies/:Title',
+  function (req, res) {
+    Movie.findOne({
+        Title: req.params.Title
+      })
+      .then(function (movies) {
+        res.json(movies);
+      })
+      .catch(function (err) {
+        console.error(err);
+        res.status(500).send("Error:" + err);
+      });
+  }
+);
 
 // READ GET all users
 
@@ -232,6 +250,7 @@ app.get('/users', function(req, res) {
 });
 
 // READ Get a user by username 
+
 app.get('/user/:Username', function(req, res) {
   User.findOne( {Username : req.params.Username })
   .then(function(user) {
