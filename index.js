@@ -48,7 +48,6 @@ app.use(function(err, req, res, next) {
 // https://localhost:27017/MyFlicksDB/users/?Username=Bob&Password=BobsPassword&Email=blah@blah.com&Birthday=23/03/1990
 
 app.post('/users', 
-// passport.authenticate('jwt', { session: false }),
 function(req, res) {
   Users.findOne( {Username : req.body.Username })
   .then(function(user) {
